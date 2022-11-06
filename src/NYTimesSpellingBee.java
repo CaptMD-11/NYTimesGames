@@ -11,23 +11,6 @@ public class NYTimesSpellingBee {
         wordPermutationsNoRepeats = new ArrayList<String>();
     }
 
-    public static ArrayList<String> getPermutationsOfLettersNoRepeats(ArrayList<String> withRepeatsList) {
-        wordPermutationsNoRepeats.add(withRepeatsList.get(0));
-        for (int i = 1; i < withRepeatsList.size(); i++) {
-            if (!isInList(wordPermutationsNoRepeats, withRepeatsList.get(i)))
-                wordPermutationsNoRepeats.add(withRepeatsList.get(i));
-        }
-        return wordPermutationsNoRepeats;
-    }
-
-    private static boolean isInList(ArrayList<String> list, String item) {
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).equals(item))
-                return true;
-        }
-        return false;
-    }
-
     public static ArrayList<String> getPermutationsOfLettersWithRepeats(String letters) {
         ArrayList<String> res = new ArrayList<String>();
         for (int j = 0; j < letters.length(); j++) {
@@ -44,12 +27,39 @@ public class NYTimesSpellingBee {
         return wordPermutationsWithRepeats;
     }
 
-    public static void addIndividualWordPermutations(String letters) {
+    public static ArrayList<String> addIndividualWordPermutations(String letters) {
+        ArrayList<String> res = new ArrayList<String>();
+        int numFrozen = 1;
         for (int j = 0; j < letters.length(); j++) {
             for (int k = j; k < letters.length(); k++) {
-                wordPermutationsWithRepeats.add(swapLetters(letters, j, k));
+                res.add(swapLetters(letters, j, k));
             }
         }
+        for (int i = res.size() - 1; i > -1; i--) {
+            if (!res.get(i).substring(0, 1).equals(letters.substring(0, 1)))
+                res.remove(i);
+        }
+        return res;
+    }
+
+    // GOOD (TEMP)
+    public static ArrayList<String> removeRepeats(ArrayList<String> withRepeatsList) {
+        ArrayList<String> res = new ArrayList<String>();
+        res.add(withRepeatsList.get(0));
+        for (int i = 1; i < withRepeatsList.size(); i++) {
+            if (!isInList(res, withRepeatsList.get(i)))
+                res.add(withRepeatsList.get(i));
+        }
+        return res;
+    }
+
+    // GOOD (TEMP)
+    public static boolean isInList(ArrayList<String> list, String item) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).equals(item))
+                return true;
+        }
+        return false;
     }
 
     // GOOD

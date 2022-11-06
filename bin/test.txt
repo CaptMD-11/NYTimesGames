@@ -1,1 +1,1 @@
-[cbad, dbca, abcd, acbd, adcb, abcd, abdc, abcd, bacd, abcd, cabd, dacb, bacd, bcad, bdca, bacd, badc, bacd, cbad, bcad, abcd, dbac, cbad,  cdab, cbad, cbda, cbad, dbca, bdca, cbda, abcd, dbca, dcba, dacb, dbca, dbac, dbca]
+[, , , , , , ]

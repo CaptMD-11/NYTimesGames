@@ -2,12 +2,21 @@ public class Runner {
     public static void main(String[] args) {
         // System.out.println(NYTimesSpellingBee.swapLetters("null", 0, 1));
 
-        NYTimesSpellingBee obj = new NYTimesSpellingBee();
+        LetterBoxed obj = new LetterBoxed("words.txt");
+        obj.getWordWithFilters("muf");
+
+        // NYTimesSpellingBee obj = new NYTimesSpellingBee();
+
+        // System.out.println(obj.swapLetters("abcd", 0, 2));
+
+        // System.out.println(obj.removeRepeats(obj.addIndividualWordPermutations("abcd")));
+
+        // System.out.println(obj.addIndividualWordPermutations("abcd"));
 
         // System.out.println(obj.getPermutationsOfLettersWithRepeats("abcd"));
 
-        System.out.println(obj.swapLetters("null", 0, 1));
+        // System.out.println(obj.swapLetters("null", 0, 1));
 
-        System.out.println(obj.wordExists("null"));
+        // System.out.println(obj.wordExists("null"));
     }
 }
