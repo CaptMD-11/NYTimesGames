@@ -3,7 +3,7 @@ public class Runner {
         // System.out.println(NYTimesSpellingBee.swapLetters("null", 0, 1));
 
         LetterBoxed obj = new LetterBoxed("words.txt");
-        obj.getWordWithFilters("muf");
+        obj.getWordWithFilters("oc");
 
         // NYTimesSpellingBee obj = new NYTimesSpellingBee();
 
