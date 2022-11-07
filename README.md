@@ -1,1 +1,1 @@
-# NYTimesSpellingBee
+# NYTimesSpellingGames
