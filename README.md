@@ -1,1 +1,1 @@
-# NYTimesSpellingGames
+# NYTimesGames
