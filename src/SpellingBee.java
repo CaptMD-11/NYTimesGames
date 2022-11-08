@@ -2,11 +2,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class NYTimesSpellingBee {
+public class SpellingBee {
     private static ArrayList<String> wordPermutationsWithRepeats;
     private static ArrayList<String> wordPermutationsNoRepeats;
 
-    public NYTimesSpellingBee() {
+    public SpellingBee() {
         wordPermutationsWithRepeats = new ArrayList<String>();
         wordPermutationsNoRepeats = new ArrayList<String>();
     }
