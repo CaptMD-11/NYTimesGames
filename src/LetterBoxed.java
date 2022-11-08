@@ -10,11 +10,17 @@ public class LetterBoxed {
         file = new File(filePath);
     }
 
-    public void getWordWithFilters(String letters) {
-
+    /**
+     * Returns the words in the words.txt file that contain a filter set of letters
+     * verbatim.
+     * 
+     * @param letters the input String which acts as the filter.
+     * @return the words in the words.txt file that contain <strong>letters</strong>
+     *         verbatim.
+     */
+    public ArrayList<String> getWordsWithFilter(String letters) {
         ArrayList<String> res = new ArrayList<String>();
         boolean flag = false;
-
         try {
             Scanner scanner = new Scanner(file);
             String line = scanner.nextLine();
@@ -28,25 +34,25 @@ public class LetterBoxed {
                         break;
                     }
                 }
-                if (flag == true) {
-                    // System.out.println(line);
+                if (flag == true)
                     res.add(line);
-                    // break;
-                }
                 line = scanner.nextLine();
             } // end of while
-            ArrayList<String> cleanOutput = removeDoubles(res);
-            for (int i = 0; i < cleanOutput.size(); i++) {
-                System.out.println(cleanOutput.get(i));
-            }
+            return removeDoubles(res);
         } catch (Exception e) {
             System.out.println(e);
         }
-
+        return null;
     }
 
-    // helper method
-    public ArrayList<String> removeDoubles(ArrayList<String> input) {
+    /**
+     * Returns a list of words that each do not contain same adjacent letters.
+     * 
+     * @param input the input list of possible words that feature same adjacent
+     *              letters.
+     * @return a list of words that each do not contain same adjacent letters.
+     */
+    private ArrayList<String> removeDoubles(ArrayList<String> input) {
         ArrayList<String> res = new ArrayList<String>();
         int count;
         for (int i = 0; i < input.size(); i++) {
@@ -55,9 +61,8 @@ public class LetterBoxed {
                 if (input.get(i).substring(j, j + 1).equals(input.get(i).substring(j + 1, j + 2)))
                     count++;
             }
-            if (count == 0) {
+            if (count == 0)
                 res.add(input.get(i));
-            }
         }
         return res;
     }
