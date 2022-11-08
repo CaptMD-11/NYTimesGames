@@ -42,7 +42,7 @@ public class LetterBoxed {
         } catch (Exception e) {
             System.out.println(e);
         }
-        return null; // test comment
+        return null;
     }
 
     /**
