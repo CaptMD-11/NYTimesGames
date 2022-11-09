@@ -61,7 +61,7 @@ public class LetterBoxed {
                     res.add(line);
                 line = scanner.nextLine();
             } // end of while
-            return removeDoubles(res);
+            return removeWordsWithConsecs(res);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -75,7 +75,7 @@ public class LetterBoxed {
      *              letters.
      * @return a list of words that each do not contain same adjacent letters.
      */
-    private ArrayList<String> removeDoubles(ArrayList<String> input) {
+    private ArrayList<String> removeWordsWithConsecs(ArrayList<String> input) {
         ArrayList<String> res = new ArrayList<String>();
         int count;
         for (int i = 0; i < input.size(); i++) {
