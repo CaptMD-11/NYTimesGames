@@ -10,6 +10,29 @@ public class LetterBoxed {
         file = new File(filePath);
     }
 
+    public ArrayList<String> getWordsFeaturingAllLetters(String letters) { // lower case version of letters
+        ArrayList<String> res = new ArrayList<String>();
+        int count = 0;
+        try {
+            Scanner scanner = new Scanner(file);
+            String line = scanner.nextLine();
+            while (scanner.hasNextLine()) {
+                for (int i = 0; i < line.length(); i++) {
+                    if (letters.indexOf(line.substring(i, i + 1)) == -1)
+                        count++;
+                }
+                if (count == 0)
+                    res.add(line);
+                line = scanner.nextLine();
+                count = 0;
+            }
+            return res;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
     /**
      * Returns the words in the words.txt file that contain a filter set of letters
      * verbatim.

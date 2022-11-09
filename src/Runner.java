@@ -3,7 +3,9 @@ public class Runner {
         // System.out.println(NYTimesSpellingBee.swapLetters("null", 0, 1));
 
         LetterBoxed obj = new LetterBoxed("words.txt");
-        System.out.println(obj.getWordsWithFilter("crates"));
+        System.out.println(obj.getWordsFeaturingAllLetters("phsmbakilcrt"));
+
+        // System.out.println(obj.getWordsWithFilter("crates"));
 
         // NYTimesSpellingBee obj = new NYTimesSpellingBee();
 
