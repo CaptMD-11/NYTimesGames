@@ -5,12 +5,69 @@ import java.util.Scanner;
 public class LetterBoxed {
 
     private File file;
+    private String letters;
+    private String[][] letterGrid;
+    private String[] letterGridAsStrings;
+    private String[] letterGridAsStringsAllCombos;
 
-    public LetterBoxed(String filePath) {
+    public LetterBoxed(String filePath, String[][] inputLetterGrid) {
         file = new File(filePath);
+        letterGrid = inputLetterGrid;
+        letters = "";
+        for (int i = 0; i < letterGrid.length; i++) {
+            for (int j = 0; j < letterGrid[i].length; j++) {
+                letters += letterGrid[i][j];
+            }
+        }
+        letterGridAsStrings = new String[letterGrid.length];
+        for (int i = 0; i < letterGridAsStrings.length; i++) {
+            letterGridAsStrings[i] = arrayToString(letterGrid[i]);
+        }
+        letterGridAsStringsAllCombos = new String[letterGrid.length];
+        for (int i = 0; i < letterGridAsStringsAllCombos.length; i++) {
+            letterGridAsStringsAllCombos[i] = getAllCombosOfString(letterGrid[i]);
+        }
     }
 
-    public ArrayList<String> getWordsFeaturingAllLetters(String letters) { // lower case version of letters
+    public ArrayList<String> getWordsFeaturingAllLettersWithCross() { // MOST IMPORTANT METHOD IN THE CLASS
+        ArrayList<String> allLetterWords = getWordsFeaturingAllLetters();
+        ArrayList<String> res = new ArrayList<String>();
+        for (int i = 0; i < allLetterWords.size(); i++) {
+            if (wordViolatesCrossRule(allLetterWords.get(i)) == false)
+                res.add(allLetterWords.get(i));
+        }
+        return res;
+    }
+
+    public boolean wordViolatesCrossRule(String word) {
+        for (int i = 0; i < letterGridAsStringsAllCombos.length; i++) {
+            for (int j = 0; j < word.length() - 1; j++) {
+                if (letterGridAsStringsAllCombos[i].indexOf(word.substring(j, j + 2)) != -1)
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    public String getAllCombosOfString(String[] arr) { // length of arr is 3
+        String abc = arr[0] + arr[1] + arr[2];
+        String acb = arr[0] + arr[2] + arr[1];
+        String bac = arr[1] + arr[0] + arr[2];
+        String bca = arr[1] + arr[2] + arr[0];
+        String cab = arr[2] + arr[0] + arr[1];
+        String cba = arr[2] + arr[1] + arr[0];
+        return abc + acb + bac + bca + cab + cba;
+    }
+
+    public String arrayToString(String[] arr) {
+        String res = "";
+        for (int i = 0; i < arr.length; i++) {
+            res += arr[i];
+        }
+        return res;
+    }
+
+    public ArrayList<String> getWordsFeaturingAllLetters() { // lower case version of letters
         ArrayList<String> res = new ArrayList<String>();
         int count = 0;
         try {
@@ -26,41 +83,6 @@ public class LetterBoxed {
                 line = scanner.nextLine();
                 count = 0;
             }
-            return res;
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return null;
-    }
-
-    /**
-     * Returns the words in the words.txt file that contain a filter set of letters
-     * verbatim.
-     * 
-     * @param letters the input String which acts as the filter.
-     * @return the words in the words.txt file that contain <strong>letters</strong>
-     *         verbatim.
-     */
-    public ArrayList<String> getWordsWithFilter(String letters) {
-        ArrayList<String> res = new ArrayList<String>();
-        boolean flag = false;
-        try {
-            Scanner scanner = new Scanner(file);
-            String line = scanner.nextLine();
-            while (scanner.hasNextLine()) { // apple
-                for (int i = 0; i < letters.length(); i++) { // muf
-                    if (line.indexOf(letters) != -1) {
-                        flag = true;
-                        continue;
-                    } else {
-                        flag = false;
-                        break;
-                    }
-                }
-                if (flag == true)
-                    res.add(line);
-                line = scanner.nextLine();
-            } // end of while
             return removeWordsWithConsecs(res);
         } catch (Exception e) {
             System.out.println(e);
@@ -75,7 +97,7 @@ public class LetterBoxed {
      *              letters.
      * @return a list of words that each do not contain same adjacent letters.
      */
-    private ArrayList<String> removeWordsWithConsecs(ArrayList<String> input) {
+    public ArrayList<String> removeWordsWithConsecs(ArrayList<String> input) {
         ArrayList<String> res = new ArrayList<String>();
         int count;
         for (int i = 0; i < input.size(); i++) {

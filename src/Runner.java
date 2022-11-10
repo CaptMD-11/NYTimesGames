@@ -1,9 +1,17 @@
+import java.util.ArrayList;
+
 public class Runner {
     public static void main(String[] args) {
         // System.out.println(NYTimesSpellingBee.swapLetters("null", 0, 1));
 
-        LetterBoxed obj = new LetterBoxed("words.txt");
-        System.out.println(obj.getWordsFeaturingAllLetters("phsmbakilcrt"));
+        String[][] letterGrid = { { "n", "w", "r" }, { "a", "b", "i" }, { "d", "o", "c" }, { "t", "l", "e" } };
+
+        LetterBoxed obj = new LetterBoxed("words.txt", letterGrid);
+        ArrayList<String> res = obj.getWordsFeaturingAllLettersWithCross();
+
+        int num = (int) (Math.random() * (res.size()));
+
+        System.out.println(res.get(num));
 
         // System.out.println(obj.getWordsWithFilter("crates"));
 
