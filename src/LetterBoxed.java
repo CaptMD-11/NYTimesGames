@@ -29,7 +29,23 @@ public class LetterBoxed {
         }
     }
 
-    public ArrayList<String> getWordsFeaturingAllLettersWithCross() { // MOST IMPORTANT METHOD IN THE CLASS
+    public ArrayList<String> getWordsThatHaveAllLetters() { // IMPORTANT METHOD IN THE CLASS
+        ArrayList<String> allCrossWords = getWordsFeaturingAllLettersWithCross();
+        ArrayList<String> res = new ArrayList<String>();
+        int count;
+        for (int i = 0; i < allCrossWords.size(); i++) {
+            count = 0;
+            for (int j = 0; j < allCrossWords.get(i).length(); j++) {
+                if (letters.indexOf(allCrossWords.get(i).substring(j, j + 1)) == -1)
+                    count++;
+            }
+            if (count == 0)
+                res.add(allCrossWords.get(i));
+        }
+        return res;
+    }
+
+    public ArrayList<String> getWordsFeaturingAllLettersWithCross() { // IMPORTANT METHOD IN THE CLASS
         ArrayList<String> allLetterWords = getWordsFeaturingAllLetters();
         ArrayList<String> res = new ArrayList<String>();
         for (int i = 0; i < allLetterWords.size(); i++) {
@@ -39,7 +55,7 @@ public class LetterBoxed {
         return res;
     }
 
-    public boolean wordViolatesCrossRule(String word) {
+    private boolean wordViolatesCrossRule(String word) {
         for (int i = 0; i < letterGridAsStringsAllCombos.length; i++) {
             for (int j = 0; j < word.length() - 1; j++) {
                 if (letterGridAsStringsAllCombos[i].indexOf(word.substring(j, j + 2)) != -1)
@@ -49,7 +65,7 @@ public class LetterBoxed {
         return false;
     }
 
-    public String getAllCombosOfString(String[] arr) { // length of arr is 3
+    private String getAllCombosOfString(String[] arr) { // length of arr is 3
         String abc = arr[0] + arr[1] + arr[2];
         String acb = arr[0] + arr[2] + arr[1];
         String bac = arr[1] + arr[0] + arr[2];
@@ -59,7 +75,7 @@ public class LetterBoxed {
         return abc + acb + bac + bca + cab + cba;
     }
 
-    public String arrayToString(String[] arr) {
+    private String arrayToString(String[] arr) {
         String res = "";
         for (int i = 0; i < arr.length; i++) {
             res += arr[i];
@@ -67,7 +83,7 @@ public class LetterBoxed {
         return res;
     }
 
-    public ArrayList<String> getWordsFeaturingAllLetters() { // lower case version of letters
+    private ArrayList<String> getWordsFeaturingAllLetters() { // lower case version of letters
         ArrayList<String> res = new ArrayList<String>();
         int count = 0;
         try {
@@ -97,7 +113,7 @@ public class LetterBoxed {
      *              letters.
      * @return a list of words that each do not contain same adjacent letters.
      */
-    public ArrayList<String> removeWordsWithConsecs(ArrayList<String> input) {
+    private ArrayList<String> removeWordsWithConsecs(ArrayList<String> input) {
         ArrayList<String> res = new ArrayList<String>();
         int count;
         for (int i = 0; i < input.size(); i++) {

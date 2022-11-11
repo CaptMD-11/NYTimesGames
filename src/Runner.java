@@ -9,9 +9,13 @@ public class Runner {
         LetterBoxed obj = new LetterBoxed("words.txt", letterGrid);
         ArrayList<String> res = obj.getWordsFeaturingAllLettersWithCross();
 
-        int num = (int) (Math.random() * (res.size()));
+        for (int i = 0; i < res.size(); i++) {
+            System.out.println(res.get(i));
+        }
 
-        System.out.println(res.get(num));
+        // int num = (int) (Math.random() * (res.size()));
+
+        // System.out.println(res.get(num));
 
         // System.out.println(obj.getWordsWithFilter("crates"));
 
