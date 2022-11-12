@@ -31,15 +31,21 @@ public class LetterBoxed {
 
     public ArrayList<String> getWordsThatHaveAllLetters() { // IMPORTANT METHOD IN THE CLASS
         ArrayList<String> allCrossWords = getWordsFeaturingAllLettersWithCross();
+        ArrayList<String> allLettersAsList;
         ArrayList<String> res = new ArrayList<String>();
         int count;
         for (int i = 0; i < allCrossWords.size(); i++) {
             count = 0;
+            allLettersAsList = getAllLettersAsList();
             for (int j = 0; j < allCrossWords.get(i).length(); j++) {
-                if (letters.indexOf(allCrossWords.get(i).substring(j, j + 1)) == -1)
-                    count++;
+                if (allLettersAsList.indexOf(allCrossWords.get(i).substring(j, j + 1)) != -1) {
+                    for (int k = 0; k < allLettersAsList.size(); k++) {
+                        if (allLettersAsList.get(k).equals(allCrossWords.get(i).substring(j, j + 1)))
+                            allLettersAsList.remove(k);
+                    }
+                }
             }
-            if (count == 0)
+            if (allLettersAsList.size() == 0)
                 res.add(allCrossWords.get(i));
         }
         return res;
@@ -53,6 +59,14 @@ public class LetterBoxed {
                 res.add(allLetterWords.get(i));
         }
         return res;
+    }
+
+    private ArrayList<String> getAllLettersAsList() {
+        ArrayList<String> allLettersAsList = new ArrayList<String>();
+        for (int i = 0; i < letters.length(); i++) {
+            allLettersAsList.add(letters.substring(i, i + 1));
+        }
+        return allLettersAsList;
     }
 
     private boolean wordViolatesCrossRule(String word) {
