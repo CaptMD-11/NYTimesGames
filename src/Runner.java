@@ -4,12 +4,12 @@ public class Runner {
     public static void main(String[] args) {
         // System.out.println(NYTimesSpellingBee.swapLetters("null", 0, 1));
 
-        String[][] letterGrid = { { "n", "w", "r" }, { "a", "b", "i" }, { "d", "o", "c" }, { "t", "l", "e" } };
+        String[][] letterGrid = { { "c", "s", "v" }, { "e", "p", "o" }, { "i", "f", "n" }, { "r", "a", "d" } };
 
         LetterBoxed obj = new LetterBoxed("words.txt", letterGrid);
-        ArrayList<String> res = obj.getWordsThatHaveAllLetters();
+        ArrayList<String> res = obj.getWordsFeaturingAllLettersWithCross();
 
-        System.out.println(res.size());
+        // System.out.println(res.size());
 
         for (int i = 0; i < res.size(); i++) {
             System.out.println(res.get(i));
