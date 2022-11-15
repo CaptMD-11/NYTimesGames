@@ -7,13 +7,16 @@ public class Runner {
         String[][] letterGrid = { { "c", "s", "v" }, { "e", "p", "o" }, { "i", "f", "n" }, { "r", "a", "d" } };
 
         LetterBoxed obj = new LetterBoxed("words.txt", letterGrid);
+
+        System.out.println(obj.solve());
+
         ArrayList<String> res = obj.getValidWordsWithCross();
 
         // System.out.println(res.size());
 
-        for (int i = 0; i < res.size(); i++) {
-            System.out.println(res.get(i));
-        }
+        // for (int i = 0; i < res.size(); i++) {
+        // System.out.println(res.get(i));
+        // }
 
         // int num = (int) (Math.random() * (res.size()));
 

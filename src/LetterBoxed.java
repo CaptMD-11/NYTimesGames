@@ -1,3 +1,21 @@
+/*
+ * This is LetterBoxed, a Java library made by Vignesh Nydhruva, that computes helps to solve the Letter Boxed puzzle by The New York Times. 
+    Copyright (C) 2022  Vignesh Nydhruva
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -29,14 +47,22 @@ public class LetterBoxed {
         }
     }
 
+    public ArrayList<String> solve() {
+        ArrayList<String> res = new ArrayList<String>();
+        System.out.println(letters);
+        return res;
+    }
+
     /**
-     * Returns a list that contains word that use up every letter of the Letter
+     * Returns a list that contains words that use up every letter (pangrams) of the
+     * Letter
      * Boxed grid.
      * 
-     * @return a list that contains word that use up every letter of the Letter
+     * @return a list that contains word that use up every letter (pangrams) of the
+     *         Letter
      *         Boxed grid.
      */
-    public ArrayList<String> getWordsThatHaveAllLetters() { // IMPORTANT METHOD IN THE CLASS
+    public ArrayList<String> getPangrams() { // IMPORTANT METHOD IN THE CLASS
         ArrayList<String> allCrossWords = getValidWordsWithCross();
         ArrayList<String> allLettersAsList;
         ArrayList<String> res = new ArrayList<String>();
