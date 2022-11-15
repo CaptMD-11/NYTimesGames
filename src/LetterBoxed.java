@@ -25,7 +25,7 @@ public class LetterBoxed {
         }
         letterGridAsStringsAllCombos = new String[letterGrid.length];
         for (int i = 0; i < letterGridAsStringsAllCombos.length; i++) {
-            letterGridAsStringsAllCombos[i] = getAllCombosOfString(letterGrid[i]);
+            letterGridAsStringsAllCombos[i] = getAllPermsOfString(letterGrid[i]);
         }
     }
 
@@ -52,7 +52,7 @@ public class LetterBoxed {
     }
 
     public ArrayList<String> getWordsFeaturingAllLettersWithCross() { // IMPORTANT METHOD IN THE CLASS
-        ArrayList<String> allLetterWords = getWordsFeaturingAllLetters();
+        ArrayList<String> allLetterWords = getWordsFeaturingAllowedLetters();
         ArrayList<String> res = new ArrayList<String>();
         for (int i = 0; i < allLetterWords.size(); i++) {
             if (wordViolatesCrossRule(allLetterWords.get(i)) == false)
@@ -69,6 +69,14 @@ public class LetterBoxed {
         return allLettersAsList;
     }
 
+    /**
+     * Returns true if a word contains consecutive letters that are
+     * on the same side of the Letter Boxed grid, otherwise false.
+     * 
+     * @param word , the input word.
+     * @return true if <strong>word</strong> contains consecutive letters that are
+     *         on the same side of the Letter Boxed grid, otherwise false.
+     */
     private boolean wordViolatesCrossRule(String word) {
         for (int i = 0; i < letterGridAsStringsAllCombos.length; i++) {
             for (int j = 0; j < word.length() - 1; j++) {
@@ -79,7 +87,15 @@ public class LetterBoxed {
         return false;
     }
 
-    private String getAllCombosOfString(String[] arr) { // length of arr is 3
+    /**
+     * Returns all possible permutations of a <code>String[]</code> as a
+     * <code>String</code>.
+     * 
+     * @param arr , the input array.
+     * @return a <code>String</code> containing all the possible permutations of the
+     *         letters in <strong>arr</strong>.
+     */
+    private String getAllPermsOfString(String[] arr) { // length of arr is 3
         String abc = arr[0] + arr[1] + arr[2];
         String acb = arr[0] + arr[2] + arr[1];
         String bac = arr[1] + arr[0] + arr[2];
@@ -89,6 +105,12 @@ public class LetterBoxed {
         return abc + acb + bac + bca + cab + cba;
     }
 
+    /**
+     * Returns the contents of an array as a <code>String</code>.
+     * 
+     * @param arr , the input array.
+     * @return the contents of <strong>arr</strong> as a <code>String</code>.
+     */
     private String arrayToString(String[] arr) {
         String res = "";
         for (int i = 0; i < arr.length; i++) {
@@ -97,7 +119,12 @@ public class LetterBoxed {
         return res;
     }
 
-    private ArrayList<String> getWordsFeaturingAllLetters() { // lower case version of letters
+    /**
+     * Returns a list that contains words containing the allowed letters.
+     * 
+     * @return a list that contains words containing the allowed letters.
+     */
+    private ArrayList<String> getWordsFeaturingAllowedLetters() { // lower case version of letters
         ArrayList<String> res = new ArrayList<String>();
         int count = 0;
         try {
