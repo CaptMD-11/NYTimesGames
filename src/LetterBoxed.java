@@ -16,6 +16,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+// VERSION 1.0 READY 
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
