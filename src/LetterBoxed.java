@@ -47,9 +47,33 @@ public class LetterBoxed {
         }
     }
 
-    public ArrayList<String> solve() {
+    /**
+     * Returns a list of valid words for LetterBoxed when given the desired starting
+     * letter and other unused letters.
+     * 
+     * @param list         the word list.
+     * @param startLetter  the starting letter.
+     * @param otherLetters the other unused letters in the Letter Boxed grid.
+     * @return the list of valid words for LetterBoxed when given
+     *         <strong>startLetter</strong> and <strong>otherLetters</strong>.
+     */
+    public ArrayList<String> getWordsStartingWithAndContaining(ArrayList<String> list, String startLetter,
+            String otherLetters) { // IMPORTANT METHOD IN THE CLASS
         ArrayList<String> res = new ArrayList<String>();
-        System.out.println(letters);
+        int count;
+        for (int i = 0; i < list.size(); i++) {
+            count = 0;
+            for (int j = 0; j < otherLetters.length(); j++) {
+                if (list.get(i).contains(otherLetters.substring(j, j + 1)))
+                    count++;
+            }
+            if (count == otherLetters.length())
+                res.add(list.get(i));
+        }
+        for (int i = res.size() - 1; i > -1; i--) {
+            if (res.get(i).substring(0, 1).equals(startLetter) == false)
+                res.remove(i);
+        }
         return res;
     }
 
@@ -120,7 +144,7 @@ public class LetterBoxed {
      * Returns true if a word contains consecutive letters that are
      * on the same side of the Letter Boxed grid, otherwise false.
      * 
-     * @param word , the input word.
+     * @param word the input word.
      * @return true if <strong>word</strong> contains consecutive letters that are
      *         on the same side of the Letter Boxed grid, otherwise false.
      */
@@ -138,7 +162,7 @@ public class LetterBoxed {
      * Returns all possible permutations of a <code>String[]</code> as a
      * <code>String</code>.
      * 
-     * @param arr , the input array.
+     * @param arr the input array.
      * @return a <code>String</code> containing all the possible permutations of the
      *         letters in <strong>arr</strong>.
      */
@@ -155,7 +179,7 @@ public class LetterBoxed {
     /**
      * Returns the contents of an array as a <code>String</code>.
      * 
-     * @param arr , the input array.
+     * @param arr the input array.
      * @return the contents of <strong>arr</strong> as a <code>String</code>.
      */
     private String arrayToString(String[] arr) {

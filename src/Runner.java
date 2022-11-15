@@ -4,19 +4,17 @@ public class Runner {
     public static void main(String[] args) {
         // System.out.println(NYTimesSpellingBee.swapLetters("null", 0, 1));
 
-        String[][] letterGrid = { { "c", "s", "v" }, { "e", "p", "o" }, { "i", "f", "n" }, { "r", "a", "d" } };
+        String[][] letterGrid = { { "r", "h", "t" }, { "u", "s", "o" }, { "i", "w", "c" }, { "m", "a", "d" } };
 
         LetterBoxed obj = new LetterBoxed("words.txt", letterGrid);
 
-        System.out.println(obj.solve());
-
         ArrayList<String> res = obj.getValidWordsWithCross();
-
-        // System.out.println(res.size());
 
         // for (int i = 0; i < res.size(); i++) {
         // System.out.println(res.get(i));
         // }
+
+        System.out.println(obj.getWordsStartingWithAndContaining(res, "h", "oudm"));
 
         // int num = (int) (Math.random() * (res.size()));
 
