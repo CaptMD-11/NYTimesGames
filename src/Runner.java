@@ -7,7 +7,7 @@ public class Runner {
         String[][] letterGrid = { { "c", "s", "v" }, { "e", "p", "o" }, { "i", "f", "n" }, { "r", "a", "d" } };
 
         LetterBoxed obj = new LetterBoxed("words.txt", letterGrid);
-        ArrayList<String> res = obj.getWordsFeaturingAllLettersWithCross();
+        ArrayList<String> res = obj.getValidWordsWithCross();
 
         // System.out.println(res.size());
 

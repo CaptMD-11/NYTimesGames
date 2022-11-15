@@ -29,8 +29,15 @@ public class LetterBoxed {
         }
     }
 
+    /**
+     * Returns a list that contains word that use up every letter of the Letter
+     * Boxed grid.
+     * 
+     * @return a list that contains word that use up every letter of the Letter
+     *         Boxed grid.
+     */
     public ArrayList<String> getWordsThatHaveAllLetters() { // IMPORTANT METHOD IN THE CLASS
-        ArrayList<String> allCrossWords = getWordsFeaturingAllLettersWithCross();
+        ArrayList<String> allCrossWords = getValidWordsWithCross();
         ArrayList<String> allLettersAsList;
         ArrayList<String> res = new ArrayList<String>();
         int count;
@@ -51,7 +58,14 @@ public class LetterBoxed {
         return res;
     }
 
-    public ArrayList<String> getWordsFeaturingAllLettersWithCross() { // IMPORTANT METHOD IN THE CLASS
+    /**
+     * Returns a list of words that satisfy the cross-rule for Letter Boxed. In
+     * other words, this list gets all the possible words you can input into the
+     * game.
+     * 
+     * @return list of words that satisfy the cross-rule for Letter Boxed.
+     */
+    public ArrayList<String> getValidWordsWithCross() { // IMPORTANT METHOD IN THE CLASS
         ArrayList<String> allLetterWords = getWordsFeaturingAllowedLetters();
         ArrayList<String> res = new ArrayList<String>();
         for (int i = 0; i < allLetterWords.size(); i++) {
@@ -61,6 +75,13 @@ public class LetterBoxed {
         return res;
     }
 
+    /**
+     * Returns the <strong>letters</strong> as a list, where each letter has its own
+     * index.
+     * 
+     * @return the <strong>letters</strong> as a list, where each letter has its own
+     *         index.
+     */
     private ArrayList<String> getAllLettersAsList() {
         ArrayList<String> allLettersAsList = new ArrayList<String>();
         for (int i = 0; i < letters.length(); i++) {
