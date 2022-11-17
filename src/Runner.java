@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Runner {
     public static void main(String[] args) {
 
-        String[][] letterGrid = { { "r", "s", "h" }, { "y", "i", "a" }, { "d", "e", "l" }, { "w", "k", "b" } };
+        String[][] letterGrid = { { "n", "k", "c" }, { "a", "i", "w" }, { "r", "m", "o" }, { "d", "t", "v" } };
 
         LetterBoxed obj = new LetterBoxed("words.txt", letterGrid);
 
@@ -13,11 +13,11 @@ public class Runner {
         // System.out.println(res.get(i));
         // }
 
-        System.out.println(obj.getPangrams());
+        // System.out.println(obj.getPangrams());
 
-        System.out.println(obj.getWordsStartingWith(res, "s"));
+        // System.out.println(obj.getWordsStartingWith(res, "a"));
 
-        System.out.println(obj.getWordsStartingWithAndContaining(res, "r", "h"));
+        System.out.println(obj.getWordsStartingWithAndContaining(res, "o", "k"));
 
     }
 }
