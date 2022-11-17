@@ -50,6 +50,24 @@ public class LetterBoxed {
     }
 
     /**
+     * Returns a list of words from a list that start with a desired starting
+     * letter.
+     * 
+     * @param list   the list of words.
+     * @param letter the starting letter.
+     * @return a list contains words from <strong>list</strong> that start with
+     *         <strong>letter</strong>.
+     */
+    public ArrayList<String> getWordsStartingWith(ArrayList<String> list, String letter) {
+        ArrayList<String> res = new ArrayList<String>();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).substring(0, 1).equals(letter))
+                res.add(list.get(i));
+        }
+        return res;
+    }
+
+    /**
      * Returns a list of valid words for LetterBoxed when given the desired starting
      * letter and other unused letters.
      * 
