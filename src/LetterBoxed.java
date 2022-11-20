@@ -50,26 +50,11 @@ public class LetterBoxed {
     }
 
     /**
-     * Returns a list of words from a list that start with a desired starting
-     * letter.
-     * 
-     * @param list   the list of words.
-     * @param letter the starting letter.
-     * @return a list contains words from <strong>list</strong> that start with
-     *         <strong>letter</strong>.
-     */
-    public ArrayList<String> getWordsStartingWith(ArrayList<String> list, String letter) {
-        ArrayList<String> res = new ArrayList<String>();
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).substring(0, 1).equals(letter))
-                res.add(list.get(i));
-        }
-        return res;
-    }
-
-    /**
      * Returns a list of valid words for LetterBoxed when given the desired starting
      * letter and other unused letters.
+     * <p>
+     * Enter an empty list for the second input <code>String</code> if you want a
+     * list of words when given only a starting letter.
      * 
      * @param list         the word list.
      * @param startLetter  the starting letter.
@@ -132,6 +117,8 @@ public class LetterBoxed {
      * Returns a list of words that satisfy the cross-rule for Letter Boxed. In
      * other words, this list gets all the possible words you can input into the
      * game.
+     * <p>
+     * The output list is sorted from shortest words to longest words.
      * 
      * @return list of words that satisfy the cross-rule for Letter Boxed.
      */
@@ -142,7 +129,54 @@ public class LetterBoxed {
             if (wordViolatesCrossRule(allLetterWords.get(i)) == false)
                 res.add(allLetterWords.get(i));
         }
+        return getWordsFromShortestToLongest(res);
+    }
+
+    /**
+     * Returns a sorted (in terms of word length) list of words from shortest words
+     * to longest words.
+     * <p>
+     * This method utlizes the bubble sort algorithm.
+     * 
+     * @param list the unsorted list of words.
+     * @return a sorted list of words based on <strong>list</strong>.
+     */
+    private ArrayList<String> getWordsFromShortestToLongest(ArrayList<String> list) {
+        String[] arr = new String[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            arr[i] = list.get(i);
+        }
+        while (isInShortestToLongestOrder(arr) == false) {
+            for (int i = 0; i < arr.length - 1; i++) {
+                if (arr[i].length() > arr[i + 1].length()) {
+                    String temp = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = temp;
+                }
+            }
+        }
+        ArrayList<String> res = new ArrayList<String>();
+        for (int i = 0; i < arr.length; i++) {
+            res.add(arr[i]);
+        }
         return res;
+    }
+
+    /**
+     * Returns true if an array contains words in shortest to longest order, and
+     * false otherwise.
+     * 
+     * @param arr an array of words.
+     * @return true if <strong>arr</strong> contains words in shortest to longest
+     *         order, and
+     *         false otherwise.
+     */
+    private boolean isInShortestToLongestOrder(String[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arr[i].length() > arr[i + 1].length())
+                return false;
+        }
+        return true;
     }
 
     /**
