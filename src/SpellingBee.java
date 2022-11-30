@@ -70,7 +70,7 @@ public class SpellingBee {
     }
 
     public static void main(String[] args) {
-        SpellingBee obj = new SpellingBee("words.txt", "c", "nabiem");
+        SpellingBee obj = new SpellingBee("words.txt", "d", "swaroy");
         System.out.println(obj.getValidWords());
         System.out.println(obj.getPangrams());
         System.out.println(obj.getAllLettersAsList());
