@@ -3,95 +3,77 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SpellingBee {
-    private static ArrayList<String> wordPermutationsWithRepeats;
-    private static ArrayList<String> wordPermutationsNoRepeats;
 
-    public SpellingBee() {
-        wordPermutationsWithRepeats = new ArrayList<String>();
-        wordPermutationsNoRepeats = new ArrayList<String>();
+    private String mainLetter;
+    private String otherLetters;
+    private String allLetters;
+    private File file;
+
+    public SpellingBee(String filePath, String inputMainLetter, String inputOtherLetters) {
+        mainLetter = inputMainLetter;
+        otherLetters = inputOtherLetters;
+        allLetters = mainLetter + otherLetters;
+        file = new File(filePath);
     }
 
-    public static ArrayList<String> getPermutationsOfLettersWithRepeats(String letters) {
+    public ArrayList<String> getPangrams() { // IMPORTANT METHOD IN THE CLASS
+        ArrayList<String> validWords = getValidWords();
+        ArrayList<String> tempList;
         ArrayList<String> res = new ArrayList<String>();
-        for (int j = 0; j < letters.length(); j++) {
-            for (int k = j; k < letters.length(); k++) {
-                res.add(swapLetters(letters, j, k));
+        for (int i = 0; i < validWords.size(); i++) {
+            tempList = getAllLettersAsList();
+            for (int j = 0; j < validWords.get(i).length(); j++) {
+                if (tempList.indexOf(validWords.get(i).substring(j, j + 1)) != -1) {
+                    for (int k = 0; k < tempList.size(); k++) {
+                        if (tempList.get(k).equals(validWords.get(i).substring(j, j + 1)))
+                            tempList.remove(k);
+                    }
+                }
             }
+            if (tempList.size() == 0)
+                res.add(validWords.get(i));
         }
-        for (int i = res.size() - 1; i >= letters.length(); i--) {
-            res.remove(i);
-        }
-        for (int i = 0; i < res.size(); i++) {
-            addIndividualWordPermutations(res.get(i));
-        }
-        return wordPermutationsWithRepeats;
+        return res;
     }
 
-    public static ArrayList<String> addIndividualWordPermutations(String letters) {
+    public ArrayList<String> getValidWords() { // IMPORTANT METHOD IN THE CLASS
         ArrayList<String> res = new ArrayList<String>();
-        int numFrozen = 1;
-        for (int j = 0; j < letters.length(); j++) {
-            for (int k = j; k < letters.length(); k++) {
-                res.add(swapLetters(letters, j, k));
-            }
-        }
-        for (int i = res.size() - 1; i > -1; i--) {
-            if (!res.get(i).substring(0, 1).equals(letters.substring(0, 1)))
-                res.remove(i);
-        }
-        return res;
-    }
-
-    // GOOD (TEMP)
-    public static ArrayList<String> removeRepeats(ArrayList<String> withRepeatsList) {
-        ArrayList<String> res = new ArrayList<String>();
-        res.add(withRepeatsList.get(0));
-        for (int i = 1; i < withRepeatsList.size(); i++) {
-            if (!isInList(res, withRepeatsList.get(i)))
-                res.add(withRepeatsList.get(i));
-        }
-        return res;
-    }
-
-    // GOOD (TEMP)
-    public static boolean isInList(ArrayList<String> list, String item) {
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).equals(item))
-                return true;
-        }
-        return false;
-    }
-
-    // GOOD
-    public static String swapLetters(String word, int index1, int index2) {
-        ArrayList<String> wordToList = new ArrayList<String>();
-        for (int i = 0; i < word.length(); i++) {
-            wordToList.add(word.substring(i, i + 1));
-        }
-        String index1Char = word.substring(index1, index1 + 1);
-        wordToList.set(index1, wordToList.get(index2));
-        wordToList.set(index2, index1Char);
-        String res = "";
-        for (int i = 0; i < wordToList.size(); i++) {
-            res += wordToList.get(i);
-        }
-        return res;
-    }
-
-    // GOOD
-    public static boolean wordExists(String str) {
-        File file = new File("words.txt");
         try {
             Scanner scanner = new Scanner(file);
             String line = scanner.nextLine();
+            int count;
             while (scanner.hasNextLine()) {
-                if (line.equals(str))
-                    return true;
+                count = 0;
+                for (int i = 0; i < line.length(); i++) {
+                    if (allLetters.indexOf(line.substring(i, i + 1)) == -1)
+                        count++;
+                }
+                if (line.contains(mainLetter) == false)
+                    count++;
+                if (count == 0)
+                    res.add(line);
                 line = scanner.nextLine();
             }
+            return res;
         } catch (Exception e) {
             System.out.println(e);
         }
-        return false;
+        return null;
     }
+
+    private ArrayList<String> getAllLettersAsList() { // HELPER METHOD
+        ArrayList<String> res = new ArrayList<String>();
+        for (int i = 0; i < allLetters.length(); i++) {
+            res.add(allLetters.substring(i, i + 1));
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        SpellingBee obj = new SpellingBee("words.txt", "c", "nabiem");
+        System.out.println(obj.getValidWords());
+        System.out.println(obj.getPangrams());
+        System.out.println(obj.getAllLettersAsList());
+    }
+
 }
