@@ -88,7 +88,7 @@ public class SpellingBee {
     }
 
     public static void main(String[] args) {
-        SpellingBee obj = new SpellingBee("words.txt", "v", "tlraiy");
+        SpellingBee obj = new SpellingBee("words.txt", "p", "dhaeto");
         System.out.println(obj.getValidWords());
         System.out.println(obj.getPangrams());
     }
