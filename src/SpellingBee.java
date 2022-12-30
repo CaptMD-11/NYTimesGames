@@ -52,6 +52,15 @@ public class SpellingBee {
         }
     }
 
+    /**
+     * Returns a list of pangrams that can be inputted into the Spelling Bee game.
+     * <p>
+     * Keep in mind that some of the words outputted by this method may not be
+     * inputted into the game, since the word list used by the NY Times is different
+     * than the ones accessed by this class.
+     * 
+     * @return a list of pangrams that can be inputted into the Spelling Bee game.
+     */
     public ArrayList<String> getPangrams() { // IMPORTANT METHOD IN THE CLASS
         ArrayList<String> validWords = getValidSpellingBeeWords();
         ArrayList<String> tempList;
@@ -72,6 +81,15 @@ public class SpellingBee {
         return res;
     }
 
+    /**
+     * Returns a list of valid words that can inputted into the Spelling Bee game.
+     * <p>
+     * Keep in mind that some of the words outputted by this method may not be
+     * inputted into the game, since the word list used by the NY Times is different
+     * than the ones accessed by this class.
+     * 
+     * @return a list of valid words that can inputted into the Spelling Bee game.
+     */
     public ArrayList<String> getValidSpellingBeeWords() { // IMPORTANT METHOD IN THE CLASS
         ArrayList<String> res = new ArrayList<String>();
         try {
