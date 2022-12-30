@@ -16,22 +16,40 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SpellingBee {
 
+    private URL url;
     private String mainLetter;
     private String otherLetters;
     private String allLetters;
-    private File file;
 
-    public SpellingBee(String filePath, String inputMainLetter, String inputOtherLetters) {
+    public SpellingBee(String inputMainLetter, String inputOtherLetters) {
         mainLetter = inputMainLetter;
         otherLetters = inputOtherLetters;
         allLetters = mainLetter + otherLetters;
-        file = new File(filePath);
+        try {
+            url = new URL("https://raw.githubusercontent.com/dwyl/english-words/master/words.txt");
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public SpellingBee(String urlPath, String inputMainLetter, String inputOtherLetters) {
+        mainLetter = inputMainLetter;
+        otherLetters = inputOtherLetters;
+        allLetters = mainLetter + otherLetters;
+        try {
+            url = new URL(urlPath);
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public ArrayList<String> getPangrams() { // IMPORTANT METHOD IN THE CLASS
@@ -57,7 +75,7 @@ public class SpellingBee {
     public ArrayList<String> getValidWords() { // IMPORTANT METHOD IN THE CLASS
         ArrayList<String> res = new ArrayList<String>();
         try {
-            Scanner scanner = new Scanner(file);
+            Scanner scanner = new Scanner(url.openStream());
             String line = scanner.nextLine();
             int count;
             while (scanner.hasNextLine()) {
@@ -85,12 +103,6 @@ public class SpellingBee {
             res.add(allLetters.substring(i, i + 1));
         }
         return res;
-    }
-
-    public static void main(String[] args) {
-        SpellingBee obj = new SpellingBee("words.txt", "f", "eidnog");
-        System.out.println(obj.getValidWords());
-        System.out.println(obj.getPangrams());
     }
 
 }

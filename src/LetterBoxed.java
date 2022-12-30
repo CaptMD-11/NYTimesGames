@@ -18,20 +18,50 @@
 
 // VERSION 1.0 READY 
 
-import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LetterBoxed {
 
-    private File file;
+    private URL url;
     private String letters;
     private String[][] letterGrid;
     private String[] letterGridAsStrings;
     private String[] letterGridAsStringsAllCombos;
 
-    public LetterBoxed(String filePath, String[][] inputLetterGrid) {
-        file = new File(filePath);
+    public LetterBoxed(String[][] inputLetterGrid) {
+        try {
+            url = new URL("https://raw.githubusercontent.com/dwyl/english-words/master/words.txt");
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        letterGrid = inputLetterGrid;
+        letters = "";
+        for (int i = 0; i < letterGrid.length; i++) {
+            for (int j = 0; j < letterGrid[i].length; j++) {
+                letters += letterGrid[i][j];
+            }
+        }
+        letterGridAsStrings = new String[letterGrid.length];
+        for (int i = 0; i < letterGridAsStrings.length; i++) {
+            letterGridAsStrings[i] = arrayToString(letterGrid[i]);
+        }
+        letterGridAsStringsAllCombos = new String[letterGrid.length];
+        for (int i = 0; i < letterGridAsStringsAllCombos.length; i++) {
+            letterGridAsStringsAllCombos[i] = getAllPermsOfString(letterGrid[i]);
+        }
+    }
+
+    public LetterBoxed(String urlPath, String[][] inputLetterGrid) {
+        try {
+            url = new URL(urlPath);
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         letterGrid = inputLetterGrid;
         letters = "";
         for (int i = 0; i < letterGrid.length; i++) {
@@ -92,7 +122,7 @@ public class LetterBoxed {
      *         Boxed grid.
      */
     public ArrayList<String> getPangrams() { // IMPORTANT METHOD IN THE CLASS
-        ArrayList<String> allCrossWords = getValidWordsWithCross();
+        ArrayList<String> allCrossWords = getValidLetterBoxedWords();
         ArrayList<String> allLettersAsList;
         ArrayList<String> res = new ArrayList<String>();
         int count;
@@ -122,7 +152,7 @@ public class LetterBoxed {
      * 
      * @return list of words that satisfy the cross-rule for Letter Boxed.
      */
-    public ArrayList<String> getValidWordsWithCross() { // IMPORTANT METHOD IN THE CLASS
+    public ArrayList<String> getValidLetterBoxedWords() { // IMPORTANT METHOD IN THE CLASS
         ArrayList<String> allLetterWords = getWordsFeaturingAllowedLetters();
         ArrayList<String> res = new ArrayList<String>();
         for (int i = 0; i < allLetterWords.size(); i++) {
@@ -253,7 +283,7 @@ public class LetterBoxed {
         ArrayList<String> res = new ArrayList<String>();
         int count = 0;
         try {
-            Scanner scanner = new Scanner(file);
+            Scanner scanner = new Scanner(url.openStream());
             String line = scanner.nextLine();
             while (scanner.hasNextLine()) {
                 for (int i = 0; i < line.length(); i++) {
@@ -293,4 +323,5 @@ public class LetterBoxed {
         }
         return res;
     }
+
 }
