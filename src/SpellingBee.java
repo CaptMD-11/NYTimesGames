@@ -53,7 +53,7 @@ public class SpellingBee {
     }
 
     public ArrayList<String> getPangrams() { // IMPORTANT METHOD IN THE CLASS
-        ArrayList<String> validWords = getValidWords();
+        ArrayList<String> validWords = getValidSpellingBeeWords();
         ArrayList<String> tempList;
         ArrayList<String> res = new ArrayList<String>();
         for (int i = 0; i < validWords.size(); i++) {
@@ -72,7 +72,7 @@ public class SpellingBee {
         return res;
     }
 
-    public ArrayList<String> getValidWords() { // IMPORTANT METHOD IN THE CLASS
+    public ArrayList<String> getValidSpellingBeeWords() { // IMPORTANT METHOD IN THE CLASS
         ArrayList<String> res = new ArrayList<String>();
         try {
             Scanner scanner = new Scanner(url.openStream());
