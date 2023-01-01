@@ -20,7 +20,7 @@ Instructions on how to install & import the libraries into a Java project are av
 ## How does the user input data? 
 In order to access the methods in each class, you must first create an object of the class. 
 
-Here are the constructors headers for both the <samp>LetterBoxed</samp> and <samp>SpellingBee</samp> classes: 
+Here are the constructors' headers for both the <samp>LetterBoxed</samp> and <samp>SpellingBee</samp> classes: 
 
 <pre class="s-code-block language-java">
 public LetterBoxed(String[][] inputLetterGrid)
@@ -65,6 +65,8 @@ String centerLetter = "o";
 String surroundingLetters = "lamdni"; 
 </pre>
 
+The ordering of the surrounding letters should not matter. 
+
 If you choose to create an object with the first constructor, a default word list is automatically inputted for the program to utilize for its computations. If you would like to provide the program with a custom word list, create an object with the second constructor and provide the program with a URL (in <code>String</code> format) of an online word list. The custom word list file must have each word on a separate line. Here is an example: 
 
 <pre class="s-code-block language-java">
@@ -79,7 +81,7 @@ Java documentation for both NYTimesGames libraries are available in the download
 ### v1.0
 - INITIAL RELEASE
 
-## Important Notes
+## <FONT COLOR="#ff0000">Important Notes</FONT>
 - Keep in mind that some of the words outputted by the methods in these libraries may not be inputted into the game, since the word list used by the NY Times is different than the ones accessed by these classes. 
 - When creating inputs, please try to keep all letters in lower case. 
 
