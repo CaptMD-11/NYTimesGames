@@ -11,6 +11,7 @@ This repository contains a set of two libraries that can be individually downloa
 <center><a href="https://captmd-11.github.io/blog/nytimesgames/" target="_blank">Download NYTimesGames JAR Files</a></center>
 
 <br>
+<br>
 
 ## Importing into Projects 
 Instructions on how to install & import the libraries into a Java project are available <a target="_blank" href="https://captmd-11.github.io/blog/misc_instructions/howtoimportjavalibrary.html">here</a>. 
