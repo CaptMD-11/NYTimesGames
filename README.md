@@ -79,7 +79,7 @@ Java documentation for both NYTimesGames libraries are available in the download
 - INITIAL RELEASE
 
 ## Important Notes
-- 
+- Keep in mind that some of the words outputted by the methods in these libraries may not be inputted into the game, since the word list used by the NY Times is different than the ones accessed by these classes. 
 - When creating inputs, please try to keep all letters in lower case. 
 
 ## License 
