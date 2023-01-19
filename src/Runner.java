@@ -5,7 +5,7 @@ public class Runner {
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        String[][] letterGrid = { { "t", "o", "u" }, { "f", "a", "z" }, { "e", "n", "d" }, { "g", "r", "i" } };
+        String[][] letterGrid = { { "x", "b", "m" }, { "i", "n", "a" }, { "o", "y", "l" }, { "t", "e", "c" } };
 
         LetterBoxed letterObj = new LetterBoxed(letterGrid);
         ArrayList<String> res = letterObj.getValidLetterBoxedWords();
@@ -13,7 +13,7 @@ public class Runner {
             System.out.println(res.get(i));
         }
 
-        // System.out.println(obj.getWordsStartingWithAndContaining(res, "c", "rf"));
+        System.out.println(letterObj.getWordsStartingWithAndContaining(res, "l", ""));
 
         System.out.println(letterObj.getPangrams());
 
