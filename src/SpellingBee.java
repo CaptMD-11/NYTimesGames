@@ -104,6 +104,8 @@ public class SpellingBee {
                 }
                 if (line.contains(mainLetter) == false)
                     count++;
+                if (line.length() <= 3)
+                    count++;
                 if (count == 0)
                     res.add(line);
                 line = scanner.nextLine();

@@ -76,8 +76,13 @@ String url = "https://raw.githubusercontent.com/dwyl/english-words/master/words.
 ## Documentation 
 Java documentation for both NYTimesGames libraries are available in the download page. 
 
-## Version History
+## <i>Letter Boxed</i> Version History
+### v1.0
+- INITIAL RELEASE
 
+## <i>Spelling Bee</i> Version History
+### v1.1
+- returns words with minimum length of 4 letters 
 ### v1.0
 - INITIAL RELEASE
 
